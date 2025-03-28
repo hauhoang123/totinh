@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tỏ tình dễ thương</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff0f5;
+            flex-direction: column;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .heart {
+            width: 150px;
+            height: 150px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2107/2107845.png') no-repeat center/contain;
+            animation: beat 0.35s infinite alternate;
+        }
+        @keyframes beat {
+            from { transform: scale(1); }
+            to { transform: scale(3); }
+        }
+        .text {
+            margin-top: 200px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff1493;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+        .btn {
+            padding: 12px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .yes { background-color: #ff69b4; }
+        .no { background-color: #ff4500; }
+        .small-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100vh); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        .message {
+            display: none;
+            font-size: 36px;
+            color: #ff1493;
+            margin-top: 150px;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart"></div>
+    <div id="textclass" class="text">Đồng ý không thì bảo</div>
+    <div class="buttons">
+        <button class="btn yes" id="yesBtn">Em đồng ý</button>
+        <button class="btn no" id="noBtn">Hông hông</button>
+    </div>
+    <div class="message" id="message">Chúng ta cưới thôi 💍❤️</div>
+
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/Trjrj_fQnIM" title="Westlife -  Beautiful in white (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const message = document.getElementById('message');
+        const bgMusic = document.getElementById('bgMusic');
+        const textclass = document.getElementById('textclass');
+
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * 200;
+            const y = Math.random() * 50;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            message.style.display = 'block';
+            noBtn.style.display = 'none';
+            yesBtn.style.display = 'none';
+            textclass.style.display = 'none';
+            bgMusic.play();
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'small-heart';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = '-20px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 200);
+    </script>
+</body>
+</html>
